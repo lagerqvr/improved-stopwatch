@@ -1,0 +1,51 @@
+html, body {
+    background-color: var(--body-bg);
+    height: 100%;
+    font-family: Roboto, Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.stopwatch {
+    font-size: 80px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+textarea {
+    font-size: 15px !important;
+    width: 300px !important;
+    height: 200px !important;
+    white-space: pre-wrap !important;
+}
+
+#content {
+    flex: 1 0 auto;
+    background-color: var(--body-bg);
+    margin-bottom: -1px;
+    animation: popup 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer {
+    font-size: 12px;
+    flex-shrink: 0;
+    padding: 3px 20px 30px 20px;
+    text-align: center;
+    background-color: var(--body-bg) !important;
+    margin-bottom: -2px !important;
+}
+
+footer > a:hover, footer > a {
+    text-decoration: none;
+    color: darkgray;
+}
