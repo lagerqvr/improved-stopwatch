@@ -145,13 +145,17 @@ footer>a {
 }
 
 button {
-    width: 20% !important;
+    width: 7rem !important;
 }
 
 /* Media Queries */
 
 /* Phones in portrait mode (up to 479px width) */
 @media (max-width: 768px) {
+    button {
+        width: 5rem !important;
+    }
+
     .heading {
         font-family: 'Manrope', sans-serif;
         font-size: 30px;
