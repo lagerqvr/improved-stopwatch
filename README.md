@@ -1,5 +1,5 @@
 # improved-stopwatch
-An alternative solution to Shodors stopwatch with recorded times saved in localStorage. Created with Vanilla JS and Bootstrap.
+An alternative solution to [Shodor's](http://www.shodor.org/interactivate/activities/Stopwatch/) stopwatch with recorded times stored in localStorage. Created with Vanilla JS and Bootstrap.
 
 ### Stopwatch Features:
 
