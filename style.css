@@ -17,6 +17,7 @@ body {
 }
 
 .heading {
+    font-family: 'Manrope', sans-serif;
     font-size: 40px;
     font-weight: 300;
 }
@@ -131,7 +132,7 @@ button {
 /* Tablets and Up (768px and above) */
 @media (max-width: 768px) {
     textarea {
-        font-size: 16px !important;
+        font-size: 13px !important;
         width: 300px !important;
         min-height: 150px !important;
         max-height: 300px !important;
@@ -141,7 +142,7 @@ button {
 /* Laptops and Up (992px and above) */
 @media (min-width: 992px) {
     textarea {
-        font-size: 17px !important;
+        font-size: 15px !important;
         width: 400px !important;
         min-height: 200px !important;
         max-height: 300px !important;
@@ -151,7 +152,7 @@ button {
 /* Large Laptops and Desktops (1200px and above) */
 @media (min-width: 1200px) {
     textarea {
-        font-size: 18px !important;
+        font-size: 15px !important;
         min-width: 400px !important;
         min-height: 200px !important;
         max-height: 300px !important;
