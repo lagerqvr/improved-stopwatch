@@ -33,7 +33,7 @@ const record = () => {
     saveTimes();
 };
 
-// Reset the stopwatch
+// Reset the stopwatch and clear localStorage
 const reset = () => {
     clearInterval(interval);
     stopwatch.innerHTML = '00:00:00:00';
@@ -41,6 +41,14 @@ const reset = () => {
     recordedTime = 0;
     isRunning = false;
     saveTimes();
+    clearLocalStorage();
+};
+
+// Function to clear relevant items from localStorage
+const clearLocalStorage = () => {
+    localStorage.removeItem('timerValue');
+    localStorage.removeItem('recordedTimes');
+    localStorage.removeItem('fontSize');
 };
 
 // Increment the stopwatch
@@ -115,6 +123,30 @@ const loadFromLocalStorage = () => {
         }
     }
 };
+
+function exportToTextFile() {
+    // Get the data from the textarea
+    const data = document.getElementById('recorded-times').value;
+
+    // Convert the data to a Blob
+    const blob = new Blob([data], { type: 'text/plain' });
+
+    // Create a downloadable link
+    const url = URL.createObjectURL(blob);
+
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = url;
+
+    // Set the filename for the exported file
+    link.download = 'timestamps.txt';
+
+    // Programmatically trigger a click on the link to initiate the download
+    link.click();
+
+    // Release the object URL to free up resources
+    URL.revokeObjectURL(url);
+}
 
 // Attach event listeners to the buttons
 document.getElementById('start').addEventListener('click', start);
