@@ -33,6 +33,10 @@ body {
     outline: 0px solid transparent;
 }
 
+.export-txt {
+    font-size: 13px;
+}
+
 #start {
     background-color: #F88E49;
     color: white;
