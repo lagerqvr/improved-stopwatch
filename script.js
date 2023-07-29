@@ -28,7 +28,11 @@ const start = () => {
 
 // Show info about the application
 const showInfo = () => {
-    window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to store timestamps and the timer value.`);
+    window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to store timestamps and the timer value.
+    
+More info can be found on Github at 
+
+https://github.com/lagerqvr/improved-stopwatch`);
 };
 
 // Record the time
