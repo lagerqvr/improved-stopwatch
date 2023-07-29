@@ -28,7 +28,7 @@ const start = () => {
 
 // Show info about the application
 const showInfo = () => {
-    window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to save the recorded times and the timer value.`);
+    window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to store timestamps and the timer value.`);
 };
 
 // Record the time
