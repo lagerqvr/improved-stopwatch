@@ -1,18 +1,55 @@
-html, body {
+html,
+body {
     background-color: var(--body-bg);
     height: 100%;
+    color: darkgray !important;
     font-family: Roboto, Arial, sans-serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    background: #1c1b1b;
+    background-image: url("./img/blob-scene-haikei.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .stopwatch {
     font-size: 80px;
+    font-family: 'Barlow', sans-serif;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
+}
+
+#start {
+    background-color: #F88E49;
+    color: white;
+    font-weight: 500;
+}
+
+#record {
+    background-color: #D45E64;
+    color: white;
+    font-weight: 500;
+}
+
+#reset {
+    background-color: #96446D;
+    color: white;
+    font-weight: 500;
+}
+
+.form-check-input:checked {
+    background-color: #96446D !important;
+    border-color: #96446D !important;
+}
+
+.form-check-input:focus {
+    border-color: #96446D !important;
+    outline: 0px;
+    box-shadow: #96446da4 0px 0px 0px 0.25rem !important;
 }
 
 textarea {
@@ -45,7 +82,12 @@ footer {
     margin-bottom: -2px !important;
 }
 
-footer > a:hover, footer > a {
+footer>a:hover,
+footer>a {
     text-decoration: none;
     color: darkgray;
+}
+
+button {
+    width: 28% !important;
 }

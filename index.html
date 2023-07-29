@@ -2,13 +2,18 @@
 <html>
 
     <head>
-        <title>Stopwatch</title>
+        <title>Improved Stopwatch</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
             rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow&family=Roboto+Mono:wght@600&display=swap"
+            rel="stylesheet">
         <link rel="stylesheet" href="./style.css">
+        <link rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏱️</text></svg>">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -29,21 +34,21 @@
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                                value="40" onchange="changeFontSize()">
+                                value="60" onchange="changeFontSize()">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Normal
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                value="60" onchange="changeFontSize()">
+                                value="80" onchange="changeFontSize()">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Large
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-                                value="80" onchange="changeFontSize()">
+                                value="100" onchange="changeFontSize()">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 Huge
                             </label>
@@ -54,17 +59,16 @@
                             id="recorded-times"></textarea>
                     </div>
                     <div class="row m-1 d-flex justify-content-between">
-                        <button id="start" class="btn btn-success w-25">Start</button>
-                        <button id="record" class="btn btn-secondary w-25">Record</button>
-                        <button id="reset" class="btn btn-danger w-25">Reset</button>
+                        <button id="start" class="btn">Start</button>
+                        <button id="record" class="btn">Record</button>
+                        <button id="reset" class="btn">Reset</button>
                     </div>
                 </div>
             </div>
 
         </div>
         <div class="footer">
-            <footer><a target="_blank" href="https://github.com/lagerqvr">Made with ❤️ by
-                    <b>@lagerqvr</b></a></footer>
+            <footer><a target="_blank" href="https://github.com/lagerqvr">Made with ❤️ by<b>@lagerqvr</b></a></footer>
         </div>
 
     </body>
