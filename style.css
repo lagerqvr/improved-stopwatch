@@ -29,6 +29,10 @@ body {
     font-variant-numeric: tabular-nums;
 }
 
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
 #start {
     background-color: #F88E49;
     color: white;
@@ -68,6 +72,19 @@ body {
     box-shadow: #96446Dda 0px 0px 0px 0.25rem !important;
 }
 
+#clear {
+    background-color: #4C345E;
+    color: white;
+    font-weight: 500;
+    border: none;
+}
+
+#clear:focus {
+    border-color: #4C345E !important;
+    outline: 0px;
+    box-shadow: #4C345Eda 0px 0px 0px 0.25rem !important;
+}
+
 .form-check-input:checked {
     background-color: #96446D !important;
     border-color: #96446D !important;
@@ -80,7 +97,6 @@ body {
 }
 
 textarea {
-    font-size: 15px !important;
     padding: 1rem;
     border: none;
     border-radius: 0.25rem;
@@ -93,6 +109,10 @@ textarea:focus {
     border-color: #141F37;
     outline: 0;
     box-shadow: 0 0 0 0.25rem #141f37d6;
+}
+
+.center-box {
+    width: 100%;
 }
 
 #content {
@@ -125,15 +145,24 @@ footer>a {
 }
 
 button {
-    width: 28% !important;
+    width: 23% !important;
 }
 
 /* Media Queries */
-/* Tablets and Up (768px and above) */
+
+/* Phones in portrait mode (up to 479px width) */
 @media (max-width: 768px) {
     textarea {
         font-size: 13px !important;
-        width: 300px !important;
+        min-height: 150px !important;
+        max-height: 300px !important;
+    }
+}
+
+/* Tablets and Up (768px and above) */
+@media (min-width: 768px) {
+    textarea {
+        font-size: 13px !important;
         min-height: 150px !important;
         max-height: 300px !important;
     }
@@ -143,7 +172,6 @@ button {
 @media (min-width: 992px) {
     textarea {
         font-size: 15px !important;
-        width: 400px !important;
         min-height: 200px !important;
         max-height: 300px !important;
     }

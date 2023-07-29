@@ -100,6 +100,12 @@ const saveFontSize = (fontSize) => {
     localStorage.setItem('fontSize', fontSize);
 };
 
+// Function to clear recorded times and remove them from local storage
+const clear = () => {
+    recordedTimes.value = '';
+    saveTimes(); // Save the cleared recorded times in local storage
+};
+
 // Load recorded times, timer value, and font size from local storage
 const loadFromLocalStorage = () => {
     const savedRecordedTimes = localStorage.getItem('recordedTimes');
@@ -152,6 +158,7 @@ function exportToTextFile() {
 document.getElementById('start').addEventListener('click', start);
 document.getElementById('record').addEventListener('click', record);
 document.getElementById('reset').addEventListener('click', reset);
+document.getElementById('clear').addEventListener('click', clear);
 
 // Attach event listener to the radio buttons for font size change
 const fontSizeRadios = document.querySelectorAll('input[name="flexRadioDefault"]');

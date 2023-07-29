@@ -28,12 +28,12 @@
                 <h1 class="text-center mt-5 heading">Improved Stopwatch</h1>
             </div>
             <div class="d-flex align-items-center justify-content-center mt-3 mb-3">
-                <div class="stopwatch">
+                <div class="stopwatch" contenteditable="true" oninput="formatInput()">
                     00:00:00:00
                 </div>
             </div>
             <!-- Create div with parent div and center them -->
-            <div class="d-flex align-items-center justify-content-center">
+            <div class="d-flex align-items-center justify-content-center center-box">
                 <div class="child">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <div class="form-check">
@@ -58,13 +58,14 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-floating mb-4">
+                    <div class="mb-4">
                         <textarea placeholder="Record your times here..." id="recorded-times"></textarea>
                     </div>
                     <div class="row m-1 d-flex justify-content-between">
                         <button id="start" class="btn">Start</button>
                         <button id="record" class="btn">Record</button>
                         <button id="reset" class="btn">Reset</button>
+                        <button id="clear" class="btn">Clear</button>
                     </div>
                     <div class="row mt-5 d-flex justify-content-center">
                         <button onclick="exportToTextFile()" class="btn mt-2"><svg xmlns="http://www.w3.org/2000/svg"
