@@ -14,5 +14,7 @@ An alternative solution to Shodors stopwatch with recorded times saved in localS
 9. **Stylish Design:** The stopwatch features a clean and visually appealing design, thanks to Bootstrap CSS.
 10. **SVG Background:** The site uses an SVG background image that scales responsively on all devices from [Haikei](https://haikei.app/).
 
+![blob-scene-haikei](https://github.com/lagerqvr/improved-stopwatch/assets/5682399/2583449c-0077-45b5-8557-38478e1b6efb)
+
 :warning: **Warning: Code in this repository is work-in-progress and will be subject to change.**
 
