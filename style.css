@@ -37,6 +37,10 @@ body {
     font-size: 13px;
 }
 
+.app-info {
+    cursor: pointer;
+}
+
 #start {
     background-color: #F88E49;
     color: white;
