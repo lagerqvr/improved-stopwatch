@@ -152,16 +152,24 @@ button {
 
 /* Phones in portrait mode (up to 479px width) */
 @media (max-width: 768px) {
+    .heading {
+        font-family: 'Manrope', sans-serif;
+        font-size: 30px;
+        font-weight: 300;
+    }
+
     textarea {
+        width: 20rem !important;
         font-size: 13px !important;
-        min-height: 150px !important;
-        max-height: 300px !important;
+        min-height: 200px !important;
+        max-height: 350px !important;
     }
 }
 
 /* Tablets and Up (768px and above) */
 @media (min-width: 768px) {
     textarea {
+        width: 27rem !important;
         font-size: 13px !important;
         min-height: 150px !important;
         max-height: 300px !important;
@@ -171,6 +179,7 @@ button {
 /* Laptops and Up (992px and above) */
 @media (min-width: 992px) {
     textarea {
+        min-width: 30rem !important;
         font-size: 15px !important;
         min-height: 200px !important;
         max-height: 300px !important;
@@ -180,8 +189,8 @@ button {
 /* Large Laptops and Desktops (1200px and above) */
 @media (min-width: 1200px) {
     textarea {
+        min-width: 35rem !important;
         font-size: 15px !important;
-        min-width: 400px !important;
         min-height: 200px !important;
         max-height: 300px !important;
     }
