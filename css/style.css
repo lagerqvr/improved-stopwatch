@@ -1,7 +1,7 @@
 /* Styling for HTML and Body */
 html,
 body {
-    background-color: #1c1b1b;
+    background-color: #001321;
     height: 100%;
     color: lightgray !important;
     font-family: Roboto, Arial, sans-serif;
@@ -11,7 +11,7 @@ body {
 body {
     display: flex;
     flex-direction: column;
-    background: #1c1b1b;
+    background: #001321;
     background-image: url("../img/blob-scene-haikei.svg");
     /* Background SVG image */
     background-repeat: no-repeat;
