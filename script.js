@@ -73,7 +73,7 @@ getRecordedTimeFromWorker();
 const showInfo = () => {
     window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to store timestamps and the timer value.
     
-More info can be found on Github at 
+More info can be found on Github at:
 
 https://github.com/lagerqvr/improved-stopwatch`);
 };
@@ -180,12 +180,17 @@ const loadFromLocalStorage = () => {
     }
 };
 
+// Export recorded times to a text file
 function exportToTextFile() {
     // Get the data from the textarea
     const data = document.getElementById('recorded-times').value;
 
+    // Add timestamp heading and empty row to the data
+    const timestamp = new Date().toLocaleString();
+    const newData = `Timestamps ${timestamp}\n \n${data}\n`;
+
     // Convert the data to a Blob
-    const blob = new Blob([data], { type: 'text/plain' });
+    const blob = new Blob([newData], { type: 'text/plain' });
 
     // Create a downloadable link
     const url = URL.createObjectURL(blob);
