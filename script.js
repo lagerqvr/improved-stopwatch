@@ -14,15 +14,15 @@ const start = () => {
     if (!isRunning) {
         interval = setInterval(increment, 10);
         isRunning = true;
-        document.querySelector('.start').classList.remove('btn-success');
-        document.querySelector('.start').classList.add('btn-danger');
-        document.querySelector('.start').innerText = 'Stop';
+        document.getElementById('start').classList.remove('btn-start');
+        document.getElementById('start').classList.add('btn-danger');
+        document.getElementById('start').innerText = 'Stop';
     } else {
         clearInterval(interval);
         isRunning = false;
-        document.querySelector('.start').classList.remove('btn-danger');
-        document.querySelector('.start').classList.add('btn-success');
-        document.querySelector('.start').innerText = 'Start';
+        document.getElementById('start').classList.remove('btn-danger');
+        document.getElementById('start').classList.add('btn-start');
+        document.getElementById('start').innerText = 'Start';
     }
 };
 
@@ -162,7 +162,7 @@ function exportToTextFile() {
 }
 
 // Attach event listeners to the buttons
-document.querySelector('.start').addEventListener('click', start);
+document.querySelector('#start').addEventListener('click', start);
 document.getElementById('record').addEventListener('click', record);
 document.getElementById('reset').addEventListener('click', reset);
 document.getElementById('clear').addEventListener('click', clear);
