@@ -52,6 +52,7 @@ const setRecordedTimeInWorker = (time) => {
     }
 };
 
+// Function to start or stop the stopwatch
 const start = () => {
     if (!isRunning) { // Start the stopwatch
         recordedTime = stopwatch.innerHTML; // Update the recordedTime variable with the current stopwatch content
