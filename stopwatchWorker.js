@@ -1,7 +1,7 @@
 // Initialize variables for the stopwatch worker
 let startTimestamp = null; // Timestamp when the stopwatch started
 let initialElapsedMilliseconds = 0; // Elapsed milliseconds from the initial recorded time
-let recordedTime = '00:00:00.0'; // The recorded time in the format HH:MM:SS:HH
+let recordedTime = '00:00:00:0'; // The recorded time in the format HH:MM:SS:H
 let isRunning = false; // Flag to track if the stopwatch is currently running or stopped
 
 // Function to format time values with leading zeros
@@ -17,7 +17,7 @@ const updateStopwatch = (timestamp) => {
         const seconds = Math.floor((elapsedMilliseconds / 1000) % 60);
         const minutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
         const hours = Math.floor((elapsedMilliseconds / (1000 * 60 * 60)) % 24);
-        recordedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}.${tenths}`;
+        recordedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}:${tenths}`;
 
         // Send the updated time back to the main thread for display
         self.postMessage(recordedTime);
@@ -34,14 +34,14 @@ self.addEventListener('message', (event) => {
             startTimestamp = performance.now(); // Record the start timestamp
             initialElapsedMilliseconds = 0; // Reset initial elapsed time to 0
             if (event.data.initialTime) {
-                // Calculate the elapsed time from the initial recorded time
+                // Calculate the elapsed time from the initial recorded time, including tenths of a second
                 const initialTimeParts = event.data.initialTime.split(':').map((val) => parseInt(val, 10));
                 const initialHours = initialTimeParts[0] || 0;
                 const initialMinutes = initialTimeParts[1] || 0;
                 const initialSeconds = initialTimeParts[2] || 0;
-                const initialHundredths = initialTimeParts[3] || 0;
+                const initialTenths = initialTimeParts[3] || 0;
                 initialElapsedMilliseconds =
-                    initialHundredths * 10 +
+                    initialTenths * 100 +
                     initialSeconds * 1000 +
                     initialMinutes * 60 * 1000 +
                     initialHours * 60 * 60 * 1000;

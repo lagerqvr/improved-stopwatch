@@ -5,7 +5,7 @@ const recordedTimes = document.getElementById('recorded-times');
 // State variables
 let isRunning = false; // Indicates if the stopwatch is currently running
 let interval; // Interval ID for the stopwatch update
-let recordedTime = '00:00:00.0'; // The current recorded time in the format 'HH:mm:ss:hh'
+let recordedTime = '00:00:00:0'; // The current recorded time in the format 'HH:mm:ss:hh'
 let worker; // Web Worker instance
 
 // Function to format time values with leading zeros if less than 10
@@ -90,8 +90,8 @@ const record = () => {
 // Reset the stopwatch and clear local storage
 const reset = () => {
     clearInterval(interval);
-    stopwatch.innerHTML = '00:00:00.0';
-    recordedTime = '00:00:00.0'; // Reset the recordedTime variable to its initial value
+    stopwatch.innerHTML = '00:00:00:0';
+    recordedTime = '00:00:00:0'; // Reset the recordedTime variable to its initial value
     isRunning = false;
     saveTimes(); // Save the recorded times in local storage
     clearLocalStorage(); // Clear relevant items from local storage
