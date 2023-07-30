@@ -14,6 +14,7 @@ An alternative solution to [Shodor's](http://www.shodor.org/interactivate/activi
 9. **Stylish Design:** The stopwatch features a clean and visually appealing design, thanks to Bootstrap CSS.
 10. **SVG Background:** The site uses an SVG background image that scales responsively on all devices from [Haikei](https://haikei.app/).
 11. **Download Timestamps:** Users can download the recorded timestamps locally to their device for further use or analysis.
+12. **Set Time Manually:** Users can manually set the stopwatch time by editing the stopwatch display, which is contenteditable. This feature allows users to start the stopwatch from a specific time or continue timing from a previously recorded timestamp.
 
 ![blob-scene-haikei](https://github.com/lagerqvr/improved-stopwatch/assets/5682399/2583449c-0077-45b5-8557-38478e1b6efb)
 
