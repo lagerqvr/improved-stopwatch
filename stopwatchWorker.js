@@ -1,5 +1,6 @@
 // Initialize variables for the stopwatch worker
 let startTimestamp = null; // Timestamp when the stopwatch started
+let initialElapsedMilliseconds = 0; // Elapsed milliseconds from the initial recorded time
 let recordedTime = '00:00:00:00'; // The recorded time in the format HH:MM:SS:HH
 let isRunning = false; // Flag to track if the stopwatch is currently running or stopped
 
@@ -11,7 +12,7 @@ const formatTime = (timeValue) => {
 // Function to update the recorded time and send it to the main thread
 const updateStopwatch = (timestamp) => {
     if (isRunning) {
-        const elapsedMilliseconds = timestamp - startTimestamp;
+        const elapsedMilliseconds = timestamp - startTimestamp + initialElapsedMilliseconds;
         const hundredths = Math.floor((elapsedMilliseconds / 10) % 100);
         const seconds = Math.floor((elapsedMilliseconds / 1000) % 60);
         const minutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
@@ -31,6 +32,20 @@ self.addEventListener('message', (event) => {
         // Start the stopwatch if it's not already running
         if (!isRunning) {
             startTimestamp = performance.now(); // Record the start timestamp
+            initialElapsedMilliseconds = 0; // Reset initial elapsed time to 0
+            if (event.data.initialTime) {
+                // Calculate the elapsed time from the initial recorded time
+                const initialTimeParts = event.data.initialTime.split(':').map((val) => parseInt(val, 10));
+                const initialHours = initialTimeParts[0] || 0;
+                const initialMinutes = initialTimeParts[1] || 0;
+                const initialSeconds = initialTimeParts[2] || 0;
+                const initialHundredths = initialTimeParts[3] || 0;
+                initialElapsedMilliseconds =
+                    initialHundredths * 10 +
+                    initialSeconds * 1000 +
+                    initialMinutes * 60 * 1000 +
+                    initialHours * 60 * 60 * 1000;
+            }
             isRunning = true;
             requestAnimationFrame(updateStopwatch);
         }
