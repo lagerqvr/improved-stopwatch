@@ -9,22 +9,63 @@ const formatTime = (timeValue) => {
     return timeValue.toString().padStart(2, '0');
 };
 
-// Start the stopwatch
+let worker;
+
+// Function to start the Web Worker
+const startWorker = () => {
+    if (typeof Worker !== 'undefined') {
+        if (!worker) {
+            worker = new Worker('stopwatchWorker.js');
+            worker.onmessage = (event) => {
+                stopwatch.innerHTML = event.data;
+                saveTimerValue(event.data);
+            };
+        }
+        worker.postMessage('start');
+    } else {
+        console.log('Web Worker is not supported in this browser.');
+    }
+};
+
+// Function to stop the Web Worker
+const stopWorker = () => {
+    if (worker) {
+        worker.postMessage('stop');
+    }
+};
+
+// Function to get the recorded time from the Web Worker
+const getRecordedTimeFromWorker = () => {
+    if (worker) {
+        worker.postMessage('getRecordedTime');
+    }
+};
+
+// Function to set the recorded time in the Web Worker
+const setRecordedTimeInWorker = (time) => {
+    if (worker) {
+        worker.postMessage(`setRecordedTime:${time}`);
+    }
+};
+
 const start = () => {
     if (!isRunning) {
-        interval = setInterval(increment, 10);
+        startWorker(); // Start the Web Worker
         isRunning = true;
         document.getElementById('start').classList.remove('btn-start');
         document.getElementById('start').classList.add('btn-danger');
         document.getElementById('start').innerText = 'Stop';
     } else {
-        clearInterval(interval);
+        stopWorker(); // Stop the Web Worker
         isRunning = false;
         document.getElementById('start').classList.remove('btn-danger');
         document.getElementById('start').classList.add('btn-start');
         document.getElementById('start').innerText = 'Start';
     }
 };
+
+// Load the recorded time from the Web Worker when the page loads
+getRecordedTimeFromWorker();
 
 // Show info about the application
 const showInfo = () => {
