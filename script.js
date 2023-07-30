@@ -2,14 +2,13 @@ const stopwatch = document.querySelector('.stopwatch');
 const recordedTimes = document.getElementById('recorded-times');
 let isRunning = false;
 let interval;
-let recordedTime = 0;
+let recordedTime = '00:00:00:00';
+let worker;
 
 // Function to format time values (prepend with zero if less than 10)
 const formatTime = (timeValue) => {
     return timeValue.toString().padStart(2, '0');
 };
-
-let worker;
 
 // Function to start the Web Worker
 const startWorker = () => {
@@ -21,7 +20,7 @@ const startWorker = () => {
                 saveTimerValue(event.data);
             };
         }
-        worker.postMessage('start');
+        worker.postMessage({ command: 'start', initialTime: recordedTime });
     } else {
         console.log('Web Worker is not supported in this browser.');
     }
@@ -30,34 +29,37 @@ const startWorker = () => {
 // Function to stop the Web Worker
 const stopWorker = () => {
     if (worker) {
-        worker.postMessage('stop');
+        worker.postMessage({ command: 'stop' });
     }
 };
 
 // Function to get the recorded time from the Web Worker
 const getRecordedTimeFromWorker = () => {
     if (worker) {
-        worker.postMessage('getRecordedTime');
+        worker.postMessage({ command: 'getRecordedTime' });
     }
 };
 
 // Function to set the recorded time in the Web Worker
 const setRecordedTimeInWorker = (time) => {
     if (worker) {
-        worker.postMessage(`setRecordedTime:${time}`);
+        worker.postMessage({ command: 'setRecordedTime', time });
     }
 };
 
 const start = () => {
     if (!isRunning) {
+        recordedTime = stopwatch.innerHTML; // Update the recordedTime variable with the current content of the stopwatch
         startWorker(); // Start the Web Worker
         isRunning = true;
+        stopwatch.contentEditable = false; // Disable contenteditable while the stopwatch is running
         document.getElementById('start').classList.remove('btn-start');
         document.getElementById('start').classList.add('btn-danger');
         document.getElementById('start').innerText = 'Stop';
     } else {
         stopWorker(); // Stop the Web Worker
         isRunning = false;
+        stopwatch.contentEditable = true; // Enable contenteditable again when the stopwatch is stopped
         document.getElementById('start').classList.remove('btn-danger');
         document.getElementById('start').classList.add('btn-start');
         document.getElementById('start').innerText = 'Start';

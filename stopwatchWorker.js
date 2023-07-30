@@ -7,11 +7,8 @@ const formatTime = (timeValue) => {
 };
 
 const increment = () => {
-    const time = recordedTime.split(':');
-    let hours = parseInt(time[0]);
-    let minutes = parseInt(time[1]);
-    let seconds = parseInt(time[2]);
-    let hundredths = parseInt(time[3]);
+    const time = recordedTime.split(':').map(val => parseInt(val, 10));
+    let [hours, minutes, seconds, hundredths] = time;
 
     hundredths++;
     if (hundredths === 100) {
@@ -32,18 +29,19 @@ const increment = () => {
 };
 
 self.addEventListener('message', (event) => {
-    if (event.data === 'start') {
+    if (event.data.command === 'start') {
         if (!isRunning) {
+            recordedTime = event.data.initialTime; // Set the initial time received from the main thread
             interval = setInterval(increment, 10);
             isRunning = true;
         }
-    } else if (event.data === 'stop') {
+    } else if (event.data.command === 'stop') {
         clearInterval(interval);
         isRunning = false;
-    } else if (event.data === 'getRecordedTime') {
+    } else if (event.data.command === 'getRecordedTime') {
         self.postMessage(recordedTime); // Send the recorded time back to the main thread
-    } else if (event.data.startsWith('setRecordedTime:')) {
-        recordedTime = event.data.split(':')[1];
+    } else if (event.data.command === 'setRecordedTime') {
+        recordedTime = event.data.time;
         self.postMessage('Recorded time has been set.'); // Send a response back to the main thread
     }
 });
