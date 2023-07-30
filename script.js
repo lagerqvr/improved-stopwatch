@@ -14,15 +14,15 @@ const start = () => {
     if (!isRunning) {
         interval = setInterval(increment, 10);
         isRunning = true;
-        document.getElementById('start').classList.remove('btn-success');
-        document.getElementById('start').classList.add('btn-danger');
-        document.getElementById('start').innerText = 'Stop';
+        document.querySelector('.start').classList.remove('btn-success');
+        document.querySelector('.start').classList.add('btn-danger');
+        document.querySelector('.start').innerText = 'Stop';
     } else {
         clearInterval(interval);
         isRunning = false;
-        document.getElementById('start').classList.remove('btn-danger');
-        document.getElementById('start').classList.add('btn-success');
-        document.getElementById('start').innerText = 'Start';
+        document.querySelector('.start').classList.remove('btn-danger');
+        document.querySelector('.start').classList.add('btn-success');
+        document.querySelector('.start').innerText = 'Start';
     }
 };
 
@@ -46,7 +46,6 @@ const record = () => {
 const reset = () => {
     clearInterval(interval);
     stopwatch.innerHTML = '00:00:00:00';
-    recordedTimes.value = '';
     recordedTime = 0;
     isRunning = false;
     saveTimes();
@@ -56,7 +55,6 @@ const reset = () => {
 // Function to clear relevant items from localStorage
 const clearLocalStorage = () => {
     localStorage.removeItem('timerValue');
-    localStorage.removeItem('recordedTimes');
     localStorage.removeItem('fontSize');
 };
 
@@ -164,7 +162,7 @@ function exportToTextFile() {
 }
 
 // Attach event listeners to the buttons
-document.getElementById('start').addEventListener('click', start);
+document.querySelector('.start').addEventListener('click', start);
 document.getElementById('record').addEventListener('click', record);
 document.getElementById('reset').addEventListener('click', reset);
 document.getElementById('clear').addEventListener('click', clear);

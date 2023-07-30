@@ -41,18 +41,18 @@ body {
     cursor: pointer;
 }
 
-#start {
+/* .start {
     background-color: #F88E49;
     color: white;
     font-weight: 500;
     border: none;
 }
 
-#start:focus {
+.start:focus {
     border-color: #F88E49 !important;
     outline: 0px;
     box-shadow: #f88f49da 0px 0px 0px 0.25rem !important;
-}
+} */
 
 #record {
     background-color: #D45E64;
