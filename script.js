@@ -1,107 +1,108 @@
+// DOM elements
 const stopwatch = document.querySelector('.stopwatch');
 const recordedTimes = document.getElementById('recorded-times');
-let isRunning = false;
-let interval;
-let recordedTime = '00:00:00:00';
-let worker;
 
-// Function to format time values (prepend with zero if less than 10)
+// State variables
+let isRunning = false; // Indicates if the stopwatch is currently running
+let interval; // Interval ID for the stopwatch update
+let recordedTime = '00:00:00:00'; // The current recorded time in the format 'HH:mm:ss:hh'
+let worker; // Web Worker instance
+
+// Function to format time values with leading zeros if less than 10
 const formatTime = (timeValue) => {
     return timeValue.toString().padStart(2, '0');
 };
 
-// Function to start the Web Worker
+// Function to start the Web Worker responsible for updating the stopwatch
 const startWorker = () => {
+    // Check if Web Worker is supported by the browser
     if (typeof Worker !== 'undefined') {
         if (!worker) {
-            worker = new Worker('stopwatchWorker.js');
+            worker = new Worker('stopwatchWorker.js'); // Create a new Web Worker instance if it doesn't exist
+            // Event listener to receive messages from the Web Worker
             worker.onmessage = (event) => {
-                stopwatch.innerHTML = event.data;
-                saveTimerValue(event.data);
+                stopwatch.innerHTML = event.data; // Update the stopwatch display with the received data
+                saveTimerValue(event.data); // Save the timer value in local storage
             };
         }
-        worker.postMessage({ command: 'start', initialTime: recordedTime });
+        worker.postMessage({ command: 'start', initialTime: recordedTime }); // Start the Web Worker with the initial recorded time
     } else {
         console.log('Web Worker is not supported in this browser.');
     }
 };
 
-// Function to stop the Web Worker
+// Function to stop the Web Worker responsible for updating the stopwatch
 const stopWorker = () => {
     if (worker) {
-        worker.postMessage({ command: 'stop' });
+        worker.postMessage({ command: 'stop' }); // Send 'stop' command to the Web Worker
     }
 };
 
-// Function to get the recorded time from the Web Worker
+// Function to request the recorded time from the Web Worker
 const getRecordedTimeFromWorker = () => {
     if (worker) {
-        worker.postMessage({ command: 'getRecordedTime' });
+        worker.postMessage({ command: 'getRecordedTime' }); // Send 'getRecordedTime' command to the Web Worker
     }
 };
 
 // Function to set the recorded time in the Web Worker
 const setRecordedTimeInWorker = (time) => {
     if (worker) {
-        worker.postMessage({ command: 'setRecordedTime', time });
+        worker.postMessage({ command: 'setRecordedTime', time }); // Send 'setRecordedTime' command to the Web Worker with the specified time
     }
 };
 
 const start = () => {
-    if (!isRunning) {
-        recordedTime = stopwatch.innerHTML; // Update the recordedTime variable with the current content of the stopwatch
-        startWorker(); // Start the Web Worker
+    if (!isRunning) { // Start the stopwatch
+        recordedTime = stopwatch.innerHTML; // Update the recordedTime variable with the current stopwatch content
+        startWorker(); // Start the Web Worker to update the stopwatch
         isRunning = true;
         stopwatch.contentEditable = false; // Disable contenteditable while the stopwatch is running
-        document.getElementById('start').classList.remove('btn-start');
+        document.getElementById('start').classList.remove('btn-start'); // Change the button style
         document.getElementById('start').classList.add('btn-danger');
-        document.getElementById('start').innerText = 'Stop';
-    } else {
+        document.getElementById('start').innerText = 'Stop'; // Change the button text
+    } else { // Stop the stopwatch
         stopWorker(); // Stop the Web Worker
         isRunning = false;
         stopwatch.contentEditable = true; // Enable contenteditable again when the stopwatch is stopped
-        document.getElementById('start').classList.remove('btn-danger');
+        document.getElementById('start').classList.remove('btn-danger'); // Change the button style back to its initial state
         document.getElementById('start').classList.add('btn-start');
-        document.getElementById('start').innerText = 'Start';
+        document.getElementById('start').innerText = 'Start'; // Change the button text back to its initial state
     }
 };
 
 // Load the recorded time from the Web Worker when the page loads
 getRecordedTimeFromWorker();
 
-// Show info about the application
+// Show information about the application
 const showInfo = () => {
-    window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to store timestamps and the timer value.
-    
-More info can be found on Github at:
-
-https://github.com/lagerqvr/improved-stopwatch`);
+    window.alert(`This simple application is an alternative to Shodor's stopwatch but uses localStorage to store timestamps and the timer value.\n\nMore info can be found on Github at:\n\nhttps://github.com/lagerqvr/improved-stopwatch`);
 };
 
-// Record the time
+// Record the current time to the recorded times list
 const record = () => {
     recordedTime = stopwatch.innerHTML;
     recordedTimes.value += `${recordedTime}\r\n`;
-    saveTimes();
+    saveTimes(); // Save the recorded times in local storage
 };
 
-// Reset the stopwatch and clear localStorage
+// Reset the stopwatch and clear local storage
 const reset = () => {
     clearInterval(interval);
     stopwatch.innerHTML = '00:00:00:00';
-    recordedTime = 0;
+    recordedTime = '00:00:00:00'; // Reset the recordedTime variable to its initial value
     isRunning = false;
-    saveTimes();
-    clearLocalStorage();
+    saveTimes(); // Save the recorded times in local storage
+    clearLocalStorage(); // Clear relevant items from local storage
 };
 
-// Function to clear relevant items from localStorage
+// Function to clear relevant items from local storage
 const clearLocalStorage = () => {
     localStorage.removeItem('timerValue');
     localStorage.removeItem('fontSize');
 };
 
-// Increment the stopwatch
+// Increment the stopwatch time
 const increment = () => {
     // Split the stopwatch time into an array of [hours, minutes, seconds, hundredths of a second]
     const time = stopwatch.innerHTML.split(':');
@@ -125,14 +126,14 @@ const increment = () => {
     }
 
     stopwatch.innerHTML = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}:${formatTime(hundredths)}`;
-    saveTimerValue(stopwatch.innerHTML);
+    saveTimerValue(stopwatch.innerHTML); // Save the updated stopwatch value in local storage
 };
 
 // Change font size on radio button change and save to local storage
 const changeFontSize = () => {
     const fontSize = document.querySelector('input[name="flexRadioDefault"]:checked').value;
     stopwatch.style.fontSize = fontSize + 'px';
-    saveFontSize(fontSize);
+    saveFontSize(fontSize); // Save the selected font size in local storage
 };
 
 // Save recorded times to local storage
@@ -210,10 +211,10 @@ function exportToTextFile() {
 }
 
 // Attach event listeners to the buttons
-document.querySelector('#start').addEventListener('click', start);
-document.getElementById('record').addEventListener('click', record);
-document.getElementById('reset').addEventListener('click', reset);
-document.getElementById('clear').addEventListener('click', clear);
+document.querySelector('#start').addEventListener('click', start); // Start/Stop button
+document.getElementById('record').addEventListener('click', record); // Record button
+document.getElementById('reset').addEventListener('click', reset); // Reset button
+document.getElementById('clear').addEventListener('click', clear); // Clear button
 
 // Attach event listener to the radio buttons for font size change
 const fontSizeRadios = document.querySelectorAll('input[name="flexRadioDefault"]');
@@ -228,4 +229,3 @@ loadFromLocalStorage();
 recordedTimes.addEventListener('input', () => {
     saveTimes();
 });
-

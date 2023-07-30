@@ -1,3 +1,4 @@
+/* Styling for HTML and Body */
 html,
 body {
     background-color: var(--body-bg);
@@ -6,22 +7,26 @@ body {
     font-family: Roboto, Arial, sans-serif;
 }
 
+/* Background and Flexbox styling for Body */
 body {
     display: flex;
     flex-direction: column;
     background: #1c1b1b;
-    background-image: url("./img/blob-scene-haikei.svg");
+    background-image: url("../img/blob-scene-haikei.svg");
+    /* Background SVG image */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
+/* Styling for the main heading */
 .heading {
     font-family: 'Manrope', sans-serif;
     font-size: 40px;
     font-weight: 300;
 }
 
+/* Styling for the stopwatch display */
 .stopwatch {
     font-size: 50px;
     font-family: 'Barlow', sans-serif;
@@ -29,18 +34,22 @@ body {
     font-variant-numeric: tabular-nums;
 }
 
+/* Remove outline for contenteditable elements */
 [contenteditable] {
     outline: 0px solid transparent;
 }
 
+/* Styling for the "Export to Text File" button */
 .export-txt {
     font-size: 13px;
 }
 
+/* Styling for clickable application information */
 .app-info {
     cursor: pointer;
 }
 
+/* Button styling for the Start and Stop buttons */
 .btn-danger {
     border: none !important;
 }
@@ -52,12 +61,14 @@ body {
     border: none !important;
 }
 
+/* Button focus styling for the Start button */
 .btn-start:focus {
     border-color: #F88E49 !important;
     outline: 0px;
     box-shadow: #f88f49da 0px 0px 0px 0.25rem !important;
 }
 
+/* Styling for the Record button */
 #record {
     background-color: #D45E64;
     color: white;
@@ -65,12 +76,14 @@ body {
     border: none;
 }
 
+/* Button focus styling for the Record button */
 #record:focus {
     border-color: #D45E64 !important;
     outline: 0px;
     box-shadow: #D45E64da 0px 0px 0px 0.25rem !important;
 }
 
+/* Styling for the Reset button */
 #reset {
     background-color: #96446D;
     color: white;
@@ -78,12 +91,14 @@ body {
     border: none;
 }
 
+/* Button focus styling for the Reset button */
 #reset:focus {
     border-color: #96446D !important;
     outline: 0px;
     box-shadow: #96446Dda 0px 0px 0px 0.25rem !important;
 }
 
+/* Styling for the Clear button */
 #clear {
     background-color: #4C345E;
     color: white;
@@ -91,23 +106,27 @@ body {
     border: none;
 }
 
+/* Button focus styling for the Clear button */
 #clear:focus {
     border-color: #4C345E !important;
     outline: 0px;
     box-shadow: #4C345Eda 0px 0px 0px 0.25rem !important;
 }
 
+/* Styling for the checkbox input */
 .form-check-input:checked {
     background-color: #96446D !important;
     border-color: #96446D !important;
 }
 
+/* Checkbox focus styling */
 .form-check-input:focus {
     border-color: #96446D !important;
     outline: 0px;
     box-shadow: #96446da4 0px 0px 0px 0.25rem !important;
 }
 
+/* Styling for the textarea */
 textarea {
     padding: 1rem;
     border: none;
@@ -115,6 +134,7 @@ textarea {
     color: gray !important;
 }
 
+/* Textarea focus styling */
 textarea:focus {
     color: #212529;
     background-color: #fff;
@@ -123,10 +143,12 @@ textarea:focus {
     box-shadow: 0 0 0 0.25rem #141f37d6;
 }
 
+/* Container for centering the content */
 .center-box {
     width: 100%;
 }
 
+/* Styling for the content container */
 #content {
     flex: 1 0 auto;
     background-color: var(--body-bg);
@@ -134,6 +156,7 @@ textarea:focus {
     animation: popup 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+/* Absolute positioning to center the container */
 .container {
     position: absolute;
     top: 50%;
@@ -141,6 +164,7 @@ textarea:focus {
     transform: translate(-50%, -50%);
 }
 
+/* Footer styling */
 footer {
     font-size: 12px;
     flex-shrink: 0;
@@ -150,12 +174,14 @@ footer {
     margin-bottom: -2px !important;
 }
 
+/* Footer link styling */
 footer>a:hover,
 footer>a {
     text-decoration: none;
     color: darkgray;
 }
 
+/* Styling for buttons */
 button {
     width: 7rem !important;
 }
@@ -164,16 +190,20 @@ button {
 
 /* Phones in portrait mode (up to 479px width) */
 @media (max-width: 768px) {
+
+    /* Adjust button width for smaller screens */
     button {
         width: 4.6rem !important;
     }
 
+    /* Adjust heading font size for smaller screens */
     .heading {
         font-family: 'Manrope', sans-serif;
         font-size: 26px;
         font-weight: 300;
     }
 
+    /* Adjust textarea size for smaller screens */
     textarea {
         width: 20rem !important;
         font-size: 15px !important;
@@ -184,6 +214,8 @@ button {
 
 /* Tablets and Up (768px and above) */
 @media (min-width: 768px) {
+
+    /* Adjust textarea size for tablets and larger screens */
     textarea {
         width: 27rem !important;
         font-size: 15px !important;
@@ -194,6 +226,8 @@ button {
 
 /* Laptops and Up (992px and above) */
 @media (min-width: 992px) {
+
+    /* Adjust textarea size for laptops and larger screens */
     textarea {
         min-width: 30rem !important;
         font-size: 15px !important;
@@ -204,6 +238,8 @@ button {
 
 /* Large Laptops and Desktops (1200px and above) */
 @media (min-width: 1200px) {
+
+    /* Adjust textarea size for large laptops and desktops */
     textarea {
         min-width: 35rem !important;
         font-size: 15px !important;
