@@ -1,7 +1,7 @@
 /* Styling for HTML and Body */
 html,
 body {
-    background-color: var(--body-bg);
+    background-color: #1c1b1b;
     height: 100%;
     color: lightgray !important;
     font-family: Roboto, Arial, sans-serif;
