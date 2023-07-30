@@ -23,7 +23,7 @@ body {
 }
 
 .stopwatch {
-    font-size: 70px;
+    font-size: 50px;
     font-family: 'Barlow', sans-serif;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
