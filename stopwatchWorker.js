@@ -1,5 +1,5 @@
 // Initialize variables for the stopwatch worker
-let interval; // The interval used for updating the stopwatch time
+let startTimestamp = null; // Timestamp when the stopwatch started
 let recordedTime = '00:00:00:00'; // The recorded time in the format HH:MM:SS:HH
 let isRunning = false; // Flag to track if the stopwatch is currently running or stopped
 
@@ -8,34 +8,20 @@ const formatTime = (timeValue) => {
     return timeValue.toString().padStart(2, '0');
 };
 
-// Function to increment the recorded time and update the stopwatch display
-const increment = () => {
-    // Split the recorded time into individual components and convert them to integers
-    const time = recordedTime.split(':').map(val => parseInt(val, 10));
-    let [hours, minutes, seconds, hundredths] = time;
+// Function to update the recorded time and send it to the main thread
+const updateStopwatch = (timestamp) => {
+    if (isRunning) {
+        const elapsedMilliseconds = timestamp - startTimestamp;
+        const hundredths = Math.floor((elapsedMilliseconds / 10) % 100);
+        const seconds = Math.floor((elapsedMilliseconds / 1000) % 60);
+        const minutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
+        const hours = Math.floor((elapsedMilliseconds / (1000 * 60 * 60)) % 24);
+        recordedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}:${formatTime(hundredths)}`;
 
-    // Increment hundredths of a second
-    hundredths++;
-    if (hundredths === 100) {
-        hundredths = 0;
-        seconds++;
-
-        // Increment seconds and handle minute and hour rollovers
-        if (seconds === 60) {
-            seconds = 0;
-            minutes++;
-            if (minutes === 60) {
-                minutes = 0;
-                hours++;
-            }
-        }
+        // Send the updated time back to the main thread for display
+        self.postMessage(recordedTime);
+        requestAnimationFrame(updateStopwatch);
     }
-
-    // Update the recorded time with the newly calculated values
-    recordedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}:${formatTime(hundredths)}`;
-
-    // Send the updated time back to the main thread for display
-    self.postMessage(recordedTime);
 };
 
 // Event listener for messages received from the main thread
@@ -44,13 +30,12 @@ self.addEventListener('message', (event) => {
     if (event.data.command === 'start') {
         // Start the stopwatch if it's not already running
         if (!isRunning) {
-            recordedTime = event.data.initialTime; // Set the initial time received from the main thread
-            interval = setInterval(increment, 10); // Start the interval to update the time every 10ms
+            startTimestamp = performance.now(); // Record the start timestamp
             isRunning = true;
+            requestAnimationFrame(updateStopwatch);
         }
     } else if (event.data.command === 'stop') {
-        // Stop the stopwatch and clear the interval
-        clearInterval(interval);
+        // Stop the stopwatch
         isRunning = false;
     } else if (event.data.command === 'getRecordedTime') {
         // Send the recorded time back to the main thread
