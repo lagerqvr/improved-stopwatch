@@ -1,7 +1,7 @@
 // Initialize variables for the stopwatch worker
 let startTimestamp = null; // Timestamp when the stopwatch started
 let initialElapsedMilliseconds = 0; // Elapsed milliseconds from the initial recorded time
-let recordedTime = '00:00:00:00'; // The recorded time in the format HH:MM:SS:HH
+let recordedTime = '00:00:00.0'; // The recorded time in the format HH:MM:SS:HH
 let isRunning = false; // Flag to track if the stopwatch is currently running or stopped
 
 // Function to format time values with leading zeros
@@ -13,11 +13,11 @@ const formatTime = (timeValue) => {
 const updateStopwatch = (timestamp) => {
     if (isRunning) {
         const elapsedMilliseconds = timestamp - startTimestamp + initialElapsedMilliseconds;
-        const hundredths = Math.floor((elapsedMilliseconds / 10) % 100);
+        const tenths = Math.floor((elapsedMilliseconds / 100) % 10); // Extract tenths of a second
         const seconds = Math.floor((elapsedMilliseconds / 1000) % 60);
         const minutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
         const hours = Math.floor((elapsedMilliseconds / (1000 * 60 * 60)) % 24);
-        recordedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}:${formatTime(hundredths)}`;
+        recordedTime = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}.${tenths}`;
 
         // Send the updated time back to the main thread for display
         self.postMessage(recordedTime);
