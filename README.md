@@ -16,8 +16,11 @@ An alternative solution to [Shodor's](http://www.shodor.org/interactivate/activi
 11. **Download Timestamps:** Users can download the recorded timestamps locally to their device for further use or analysis.
 12. **Set Time Manually:** Users can manually set the stopwatch time by editing the stopwatch display, which is contenteditable. This feature allows users to start the stopwatch from a specific time or continue timing from a previously recorded timestamp.
 13. **Hotkey Functionality:** Press the Spacebar to start/stop the stopwatch and press R to record a timestamp.
+14. **Web Worker:** The stopwatch runs seamlessly in the background with the help of a Web Worker, ensuring uninterrupted timing even if the user switches to a different window or tab.
+
 
 ![blob-scene-haikei](https://github.com/lagerqvr/improved-stopwatch/assets/5682399/2583449c-0077-45b5-8557-38478e1b6efb)
+
 
 :warning: **Warning: Code in this repository is work-in-progress and will be subject to change.**
 
