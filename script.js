@@ -1,6 +1,7 @@
 // DOM elements
 const stopwatch = document.querySelector('.stopwatch');
 const recordedTimes = document.getElementById('recorded-times');
+const resetButton = document.getElementById('reset'); // Get the reset button element
 
 // State variables
 let isRunning = false; // Indicates if the stopwatch is currently running
@@ -59,6 +60,7 @@ const start = () => {
         startWorker(); // Start the Web Worker to update the stopwatch
         isRunning = true;
         stopwatch.contentEditable = false; // Disable contenteditable while the stopwatch is running
+        resetButton.disabled = true; // Disable the reset button while the stopwatch is running
         document.getElementById('start').classList.remove('btn-start'); // Change the button style
         document.getElementById('start').classList.add('btn-danger');
         document.getElementById('start').innerText = 'Stop'; // Change the button text
@@ -66,6 +68,7 @@ const start = () => {
         stopWorker(); // Stop the Web Worker
         isRunning = false;
         stopwatch.contentEditable = true; // Enable contenteditable again when the stopwatch is stopped
+        resetButton.disabled = false; // Enable the reset button when the stopwatch is stopped
         document.getElementById('start').classList.remove('btn-danger'); // Change the button style back to its initial state
         document.getElementById('start').classList.add('btn-start');
         document.getElementById('start').innerText = 'Start'; // Change the button text back to its initial state
