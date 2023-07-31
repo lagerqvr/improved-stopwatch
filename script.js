@@ -214,6 +214,30 @@ function exportToTextFile() {
     URL.revokeObjectURL(url);
 }
 
+// Function to handle space bar key press and start or stop the timer
+const handleSpaceBar = (event) => {
+    // Check if the pressed key is the space bar (keyCode 32)
+    if (event.keyCode === 32) {
+        // Prevent the default behavior of the space bar (e.g., scrolling down the page)
+        event.preventDefault();
+
+        // Call the start function to start or stop the timer
+        start();
+    }
+};
+
+// Function to handle 'R' key press and record a timestamp
+const handleRecordKeyPress = (event) => {
+    // Check if the pressed key is 'R' (keyCode 82)
+    if (event.keyCode === 82) {
+        // Prevent the default behavior of the 'R' key (e.g., reloading the page)
+        event.preventDefault();
+
+        // Call the record function to record the current time
+        record();
+    }
+};
+
 // Attach event listeners to the buttons
 document.querySelector('#start').addEventListener('click', start); // Start/Stop button
 document.getElementById('record').addEventListener('click', record); // Record button
@@ -225,6 +249,12 @@ const fontSizeRadios = document.querySelectorAll('input[name="flexRadioDefault"]
 fontSizeRadios.forEach(radio => {
     radio.addEventListener('change', changeFontSize);
 });
+
+// Event listener to handle the space bar key press
+document.addEventListener('keydown', handleSpaceBar);
+
+// Event listener to handle the 'R' key press
+document.addEventListener('keydown', handleRecordKeyPress);
 
 // Load recorded times, timer value, and font size from local storage when the page loads
 loadFromLocalStorage();
