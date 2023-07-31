@@ -194,6 +194,7 @@ button {
     /* Adjust button width for smaller screens */
     button {
         width: 4.6rem !important;
+        font-size: 0.9rem !important;
     }
 
     /* Adjust heading font size for smaller screens */
