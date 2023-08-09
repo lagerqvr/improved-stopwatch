@@ -248,25 +248,3 @@ button {
         max-height: 300px !important;
     }
 }
-
-/* CSS for fast blur-in animation */
-@keyframes blurIn {
-    from {
-        filter: blur(8px);
-        /* Start with a blur effect */
-        opacity: 0;
-        /* Start with 0 opacity */
-    }
-
-    to {
-        filter: blur(0);
-        /* End with no blur */
-        opacity: 1;
-        /* End with full opacity */
-    }
-}
-
-.blur-in {
-    animation: blurIn 0.7s ease-out;
-    /* Apply the blur-in animation with a duration of 0.5 seconds */
-}

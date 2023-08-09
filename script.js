@@ -191,8 +191,16 @@ function exportToTextFile() {
     const data = document.getElementById('recorded-times').value;
 
     // Add timestamp heading and empty row to the data
-    const timestamp = new Date().toLocaleString();
-    const newData = `Timestamps ${timestamp}\n \n${data}\n`;
+    const timestamp = new Date();
+    const day = String(timestamp.getDate()).padStart(2, '0');
+    const month = String(timestamp.getMonth() + 1).padStart(2, '0');
+    const year = String(timestamp.getFullYear()).slice(-2);
+    const hours = String(timestamp.getHours()).padStart(2, '0');
+    const minutes = String(timestamp.getMinutes()).padStart(2, '0');
+    const seconds = String(timestamp.getSeconds()).padStart(2, '0');
+
+    const formattedTimestamp = `${day}${month}${year}_${hours}${minutes}${seconds}`;
+    const newData = `Timestamps ${timestamp.toLocaleString()}\n \n${data}\n`;
 
     // Convert the data to a Blob
     const blob = new Blob([newData], { type: 'text/plain' });
@@ -205,7 +213,7 @@ function exportToTextFile() {
     link.href = url;
 
     // Set the filename for the exported file
-    link.download = 'timestamps.txt';
+    link.download = `timestamps_${formattedTimestamp}.txt`;
 
     // Programmatically trigger a click on the link to initiate the download
     link.click();
