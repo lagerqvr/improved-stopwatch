@@ -225,7 +225,7 @@ function exportToTextFile() {
 // Function to handle space bar key press and start or stop the timer
 const handleSpaceBar = (event) => {
     // Check if the pressed key is the space bar (keyCode 32)
-    if (event.keyCode === 32) {
+    if (event.keyCode === 80) {
         // Prevent the default behavior of the space bar (e.g., scrolling down the page)
         event.preventDefault();
 
