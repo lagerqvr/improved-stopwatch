@@ -225,7 +225,7 @@ function exportToTextFile() {
 // Function to handle space bar key press and start or stop the timer
 const handleSpaceBar = (event) => {
     // Check if the pressed key is the space bar (keyCode 32)
-    if (event.keyCode === 80) {
+    if (event.keyCode === 32 && event.ctrlKey) {
         // Prevent the default behavior of the space bar (e.g., scrolling down the page)
         event.preventDefault();
 
@@ -236,8 +236,8 @@ const handleSpaceBar = (event) => {
 
 // Function to handle 'R' key press and record a timestamp
 const handleRecordKeyPress = (event) => {
-    // Check if the pressed key is 'R' (keyCode 82)
-    if (event.keyCode === 82) {
+    // Check if the pressed key is 'R' (keyCode 82) and if the Control key is pressed
+    if (event.keyCode === 82 && event.ctrlKey) {
         // Prevent the default behavior of the 'R' key (e.g., reloading the page)
         event.preventDefault();
 
